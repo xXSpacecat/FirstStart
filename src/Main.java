@@ -36,7 +36,10 @@ public class Main {
         }*/
 
         Scanner myScanner = new Scanner(System.in);
+        System.out.println("Enter guess: ");
         String guess = myScanner.next();
         System.out.println("user guess: " + guess);
+
+
     }
 }
