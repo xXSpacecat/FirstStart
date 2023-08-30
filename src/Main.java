@@ -35,11 +35,56 @@ public class Main {
             System.out.println(sWord[i]);
         }*/
 
-        Scanner myScanner = new Scanner(System.in);
-        System.out.println("Enter guess: ");
-        String guess = myScanner.next();
-        System.out.println("user guess: " + guess);
+        String[] revWord = new String[sWord.length];
+        int count = 0;
+        while (count < revWord.length) {
+            revWord[count] = "_";
+            count++;
 
+        }
+
+        //set lives
+        int lives = 5;
+        boolean wordHid = false;
+
+        Scanner myScanner = new Scanner(System.in);
+
+        while (lives > 0) {
+
+            wordHid = true;
+            System.out.println("\nEnter guess: ");
+            String guess = myScanner.next();
+
+            Boolean letterEx = false;
+
+            for (int i = 0; i < sWord.length; i++) {
+                if (guess.equals(sWord[i])) {
+                    System.out.println("bokstaven " + sWord[i] + " finns på plats " + (i + 1));
+                    revWord[i] = guess;
+                    letterEx = true;
+                }
+                if ("_".equals(revWord[i])) {
+                    wordHid = false;
+                }
+            }
+
+            if (!letterEx) {
+                lives--;
+            }
+
+
+            printArr(revWord);
+            System.out.println();
+            System.out.println("you have " + lives + " lives");
+        }
 
     }
+
+    public static void printArr(String[] myArr) {
+        System.out.println();
+        for (int i = 0; i < myArr.length; i++) {
+            System.out.print(myArr[i]);
+        }
+    }
+
 }
