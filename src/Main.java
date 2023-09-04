@@ -49,18 +49,22 @@ public class Main {
 
         Scanner myScanner = new Scanner(System.in);
 
-        while (lives > 0) {
-
+        while (lives > 0 && !wordHid) {
+            String guess;
             wordHid = true;
-            System.out.println("\nEnter guess: ");
-            String guess = myScanner.next();
+
+            do {
+                System.out.println("\nEnter guess: ");
+                guess = myScanner.next();
+            } while ((!guess.matches("[a-öA-Ö]+")) || (guess.length() != 1));
+
 
             Boolean letterEx = false;
 
             for (int i = 0; i < sWord.length; i++) {
-                if (guess.equals(sWord[i])) {
+                if (guess.equalsIgnoreCase(sWord[i])) {
                     System.out.println("bokstaven " + sWord[i] + " finns på plats " + (i + 1));
-                    revWord[i] = guess;
+                    revWord[i] = guess.toUpperCase();
                     letterEx = true;
                 }
                 if ("_".equals(revWord[i])) {
